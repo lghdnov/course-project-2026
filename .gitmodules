@@ -1,0 +1,9 @@
+[submodule "msocial-helm"]
+	path = msocial-helm
+	url = https://github.com/lghdnov/msocial-helm
+[submodule "msocial"]
+	path = msocial
+	url = https://github.com/lghdnov/msocial
+[submodule "msocial-js-sdk"]
+	path = msocial-js-sdk
+	url = https://github.com/lghdnov/msocial-js-sdk
