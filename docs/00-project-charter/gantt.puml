@@ -1,0 +1,34 @@
+@startgantt
+!theme plain
+
+title Диаграмма Ганта — msocial (Matrix Social Network)
+
+Project starts 2026-05-11
+
+[Требования (Use Cases)] as [UC] lasts 3 days
+[Архитектура (PCMEF)] as [ARCH] lasts 4 days
+[Проектирование БД (ER, DDL)] as [DB] lasts 3 days
+[Детальное проектирование] as [DESIGN] lasts 4 days
+[Реализация backend (auth)] as [BE_AUTH] lasts 3 days
+[Реализация backend (user, post, comment)] as [BE_REST] lasts 4 days
+[Тестирование backend] as [TEST] lasts 3 days
+[Разработка UI (React)] as [UI] lasts 5 days
+[Развёртывание (Docker, Helm)] as [DEPLOY] lasts 2 days
+[Документация] as [DOCS] lasts 3 days
+
+[ARCH] starts at [UC]'s end
+[DB] starts at [UC]'s end
+[DESIGN] starts at [ARCH]'s end
+[BE_AUTH] starts at [DESIGN]'s end
+[BE_REST] starts at [BE_AUTH]'s end
+[TEST] starts at [BE_REST]'s end
+[UI] starts at [BE_AUTH]'s start
+[DEPLOY] starts at [TEST]'s end
+[DOCS] starts at [DEPLOY]'s start
+
+-- Майетки --
+2026-05-11 to 2026-05-17 are colored in LightGreen
+2026-05-18 to 2026-05-24 are colored in LightBlue
+2026-05-25 to 2026-05-30 are colored in LightYellow
+
+@endgantt

@@ -7,3 +7,9 @@
 [submodule "msocial-js-sdk"]
 	path = msocial-js-sdk
 	url = https://github.com/lghdnov/msocial-js-sdk
+[submodule "likma"]
+	path = likma
+	url = https://github.com/lghdnov/likma
+[submodule "likma-desktop"]
+	path = likma-desktop
+	url = https://github.com/lghdnov/likma-desktop

@@ -1,0 +1,32 @@
+@startuml
+!theme plain
+left to right direction
+
+title Business Use Case — msocial (Matrix Social Network)
+
+actor "Пользователь\nMatrix" as User #LightBlue
+actor "Администратор\nгруппы" as Admin #LightCoral
+actor "Matrix\nСервер" as Matrix #LightGray
+
+rectangle "msocial — Социальная сеть" {
+    usecase "BUC-1:\nФедеративная\nаутентификация" as BUC1
+    usecase "BUC-2:\nУправление\nцифровой\nидентичностью" as BUC2
+    usecase "BUC-3:\nПубликация\nконтента" as BUC3
+    usecase "BUC-4:\nСоциальное\nвзаимодействие" as BUC4
+    usecase "BUC-5:\nМодерация\nсообществ" as BUC5
+}
+
+User --> BUC1
+User --> BUC2
+User --> BUC3
+User --> BUC4
+
+Admin --> BUC4
+Admin --> BUC5
+
+Matrix --> BUC1
+
+BUC3 ..> BUC4 : <<include>>
+BUC5 ..> BUC4 : <<extend>>
+
+@enduml

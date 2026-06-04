@@ -1,0 +1,66 @@
+@startuml
+!theme plain
+
+title System Scope Frame — msocial
+
+rectangle "Внутри системы (In Scope)" as InScope #LightGreen {
+    rectangle "msocial Backend" as Backend #White {
+        card "REST API" as API
+        card "Auth Service\n(JWT + OIDC)" as Auth
+        card "Profile Service" as Profile
+        card "Post Service" as Post
+        card "Comment Service" as Comment
+        card "Group Service" as Group
+    }
+    database "PostgreSQL" as DB #LightYellow
+    storage "Local File\nStorage" as Storage #LightYellow
+}
+
+rectangle "За пределами системы (Out of Scope)" as OutScope #LightCoral {
+    cloud "Matrix Server\n(Synapse/Dendrite)" as Matrix
+    actor "Пользователь\n(Клиент)" as Client
+    actor "Администратор\nгруппы" as Admin
+    cloud "Push\nNotification\nService" as Push
+    card "E2EE\n(Клиент)" as E2EE
+}
+
+Client --> API : HTTP REST
+Admin --> API : HTTP REST
+API --> Auth
+API --> Profile
+API --> Post
+API --> Comment
+API --> Group
+
+Auth --> Matrix : OIDC verify
+Auth --> DB : sessions
+Profile --> DB : users
+Post --> DB : posts
+Comment --> DB : comments
+Group --> DB : groups
+
+Profile --> Storage : avatars
+Post --> Storage : media
+
+Matrix ..> Client : federation
+Client ..> E2EE
+Push ..> Client
+
+note right of InScope
+  **Внутри системы:**
+  • REST API (Spring Boot)
+  • Аутентификация и авторизация
+  • Бизнес-логика (PCMEF)
+  • PostgreSQL + File Storage
+  • TypeScript SDK
+end note
+
+note right of OutScope
+  **За пределами:**
+  • Matrix-сервер (Synapse)
+  • Клиентские приложения
+  • Push-уведомления
+  • E2E-шифрование
+end note
+
+@enduml
