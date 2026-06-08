@@ -45,7 +45,7 @@
 
 == Оценка трудозатрат (COCOMO)
 
-Оценка по базовой модели COCOMO (Organic project):
+Оценка по базовой модели COCOMO (Organic project) @boehm1981software:
 
 - Объём кода backend: ~8 000 SLOC (Java).
 - Объём кода frontend: ~5 000 SLOC (TypeScript).
