@@ -3,37 +3,6 @@
 
 #let arguments(..args, year: auto) = {
   let args = args.named()
-
-  args.organization = if type(args.at("organization", default: none)) == dictionary {
-    args.organization
-  } else {
-    (full: none, short: none)
-  }
-
-  args.institute = if type(args.at("institute", default: none)) == dictionary {
-    args.institute
-  } else {
-    (name: none)
-  }
-
-  args.department = if type(args.at("department", default: none)) == dictionary {
-    args.department
-  } else {
-    (name: none)
-  }
-
-  args.manager = if type(args.at("manager", default: none)) == dictionary {
-    args.manager
-  } else {
-    (position: none, name: none, title: "Руководитель:")
-  }
-
-  args.student = if type(args.at("student", default: none)) == dictionary {
-    args.student
-  } else {
-    (group: none, name: none)
-  }
-
   args.year = year
   return args
 }
@@ -43,98 +12,116 @@
   organization: (full: none, short: none),
   institute: (name: none),
   department: (name: none),
-  report-type: "ПОЯСНИТЕЛЬНАЯ ЗАПИСКА",
-  about: "к курсовому проекту",
+  report-type: "КУРСОВОЙ ПРОЕКТ",
+  discipline: none,
   subject: none,
-  student: (group: none, name: none),
-  manager: (position: none, name: none, title: "Руководитель:"),
+  student: (name: none, course: none, group: none, code: none, profile: none),
+  manager: (name: none, degree: none, position: none),
+  commission: (),
   city: none,
   year: auto,
 ) = {
   set text(size: 14pt)
-  set par(justify: false)
+  set par(justify: false, leading: 0.65em)
 
-  // Ministry and university header
+  // Ministry, university, institute, department header
   align(center)[
-    #if ministry != none [
-      #ministry
-      #v(0.3cm)
-    ]
-    #if organization.full != none [
-      #upper(organization.full)
-      #v(0.2cm)
-    ]
-    #if organization.short != none [
-      #upper[(#organization.short)]
-    ]
+    #if ministry != none {
+      upper(ministry)
+      linebreak()
+    }
+    #if organization.full != none {
+      upper(organization.full)
+      linebreak()
+    }
+    #if institute.name != none {
+      upper(institute.name)
+      linebreak()
+    }
+    #if department.name != none {
+      upper(department.name)
+    }
   ]
 
-  v(1.2cm)
-
-  // Institute and department
-  align(center)[
-    #if institute.name != none [
-      #institute.name
-      #v(0.2cm)
-    ]
-    #if department.name != none [
-      #department.name
-    ]
-  ]
-
-  v(2cm)
+  v(0.2cm)
 
   // Main title block
   align(center)[
-    #text(weight: "bold")[#upper(report-type)]
-    #v(0.3cm)
-    #if about != none [
-      #upper(about)
-      #v(0.5cm)
+    #text(weight: "bold", upper(report-type))
+    #linebreak()
+    по дисциплине
+    #linebreak()
+    #if discipline != none [
+      «#discipline»
     ]
+    #linebreak()
+    на тему:
+    #linebreak()
     #if subject != none [
-      #text(weight: "bold")[
-        #subject
-      ]
+      #text(weight: "bold")[«#subject»]
     ]
   ]
 
-  v(2cm)
+  v(0.2cm)
 
-  // Student and manager info table
+  // Student info (right-aligned)
   align(right)[
     #table(
       stroke: none,
       align: (left, left),
-      inset: (x: 0pt, y: 4pt),
+      inset: (x: 0pt, y: 1pt),
       columns: (auto, auto),
-      [Выполнил:], [Иванов Дмитрий Романович],
-      [], [3 курс, группа ПИЖ-б-о-23-2],
-      [], [09.03.04 «Программная инженерия»],
-      [], [очная форма обучения],
+      [Выполнил: #h(0.3em)], [#student.name],
+      [], [студент #student.course курса],
+      [], [группы #student.group],
+      [], [направления подготовки #student.code],
+      [], [направленность (профиль) «#student.profile»],
+      [], [очной формы обучения],
       [], [],
-      [Проверил:], [#manager.position],
-      [], [#manager.name],
+      [], [#box(width: 6cm, height: 1.2em, stroke: (bottom: 0.5pt))[]],
+      [], [(подпись)],
     )
   ]
 
-  v(1.5cm)
+  v(0.2cm)
 
-  align(left)[
-    Отчёт защищён с оценкой #box(width: 3cm, height: 1em, stroke: (bottom: 0.5pt))[]
-    #v(0.3cm)
-    Дата защиты #box(width: 3cm, height: 1em, stroke: (bottom: 0.5pt))[]
+  // Manager info (right-aligned)
+  align(right)[
+    #table(
+      stroke: none,
+      align: (left, left),
+      inset: (x: 0pt, y: 1pt),
+      columns: (auto, auto),
+      [Руководитель проекта: #h(0.3em)], [#manager.name, #manager.degree, #manager.position],
+    )
   ]
 
-  v(1fr)
 
-  // City and year
-  align(center)[
-    #if city != none [
-      #city
-    ]
-    #if year != auto and year != none [
-      #year г.
-    ]
-  ]
+  // Defense info
+  table(
+    stroke: none,
+    align: (left, left, left, left),
+    inset: (x: 0pt, y: 1pt),
+    columns: (auto, 3.5cm, auto, 3.5cm),
+    [Работа допущена к защите], [#box(width: 3.5cm, height: 1.2em, stroke: (bottom: 0.5pt))[]], [], [#box(width: 3.5cm, height: 1.2em, stroke: (bottom: 0.5pt))[]],
+    [], [(подпись руководителя)], [], [(дата)],
+    [], [], [], [],
+    [Работа выполнена и защищена с оценкой], [#box(width: 3cm, height: 1.2em, stroke: (bottom: 0.5pt))[]], [Дата защиты], [#box(width: 3cm, height: 1.2em, stroke: (bottom: 0.5pt))[]],
+    [], [(подпись)], [], [(дата)],
+  )
+
+  // Commission
+  align(left)[Члены комиссии:]
+
+  for member in commission {
+    table(
+      stroke: none,
+      align: (left, left, left),
+      inset: (x: 0pt, y: 1pt),
+      columns: (9cm, 5cm, auto),
+      [#member.position], [#member.name], [],
+      [], [#box(width: 5cm, height: 1.2em, stroke: (bottom: 0.5pt))[]], [],
+      [], [(подпись)], [],
+    )
+  }
 }
