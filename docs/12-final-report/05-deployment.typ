@@ -12,8 +12,8 @@ EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
 ```
 
-Многослойная сборка (multi-stage) обеспечивает минимальный размер образа (~150 МБ) @docker-docs.
-Развёртывание в production выполняется в кластере Kubernetes @kubernetes-docs с использованием Helm-чартов @helm-docs.
+Многослойная сборка (многоэтапная сборка, multi-stage) обеспечивает минимальный размер образа (~150 МБ) @docker-docs.
+Развёртывание в рабочей среде (production) выполняется в кластере Kubernetes @kubernetes-docs с использованием Helm-чартов @helm-docs.
 
 == Инструкция по установке
 
