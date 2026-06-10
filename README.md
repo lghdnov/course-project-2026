@@ -35,6 +35,16 @@
 | SDK             | TypeScript / JavaScript (orval, axios)          |
 | Инструменты     | Git, Postman, JaCoCo, TestContainers, WireMock  |
 
+## Субмодули
+
+| Субмодуль | Стек | Краткое описание |
+|-----------|------|------------------|
+| [`msocial/`](msocial/) | Java 25, Spring Boot, PostgreSQL | Backend: REST API, JWT/OIDC-аутентификация, профили, посты, древовидные комментарии |
+| [`likma/`](likma/) | React 18, Vite, TypeScript | Web-клиент для Matrix с интеграцией msocial: чаты, лента |
+| [`likma-desktop/`](likma-desktop/) | Tauri 2 (Rust + WebView) | Десктопная и мобильная обёртка над likma: сборка под macOS, Linux, Android |
+| [`msocial-js-sdk/`](msocial-js-sdk/) | TypeScript, orval, axios | Сгенерированный SDK для msocial API: автоматическое обновление токенов, типизированные клиенты |
+| [`msocial-helm/`](msocial-helm/) | Helm 3, Kubernetes | Чарт для деплоя в K8s: PostgreSQL subchart, Ingress |
+
 ---
 
 ## Требования к окружению
@@ -154,9 +164,17 @@ const profile = await client.users.getProfile();
 
 | Метрика                   | Значение                |
 |---------------------------|-------------------------|
-| Всего коммитов            | 15                      |
+| Всего коммитов            | 55                      |
 | Период разработки         | 11.05.2026 – 30.05.2026 |
 | Средняя частота           | ~5 коммитов/неделю      |
+
+### Активность по репозиториям
+
+![Cumulative Commits by Repository](images/cumulative_activity.png)
+
+### Активность по дням недели и часам
+
+![Commit Activity Heatmap](images/heatmap_weekday_hour.png)
 
 ---
 
