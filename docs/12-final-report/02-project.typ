@@ -197,79 +197,7 @@ com.app.backendapi
 
 === DDL-скрипты
 
-```sql
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    display_name VARCHAR(100) NOT NULL,
-    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-    last_active TIMESTAMP WITH TIME ZONE
-);
-
-CREATE TABLE personal_infos (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL UNIQUE,
-    birthday DATE,
-    address VARCHAR(255),
-    favorite_track_url VARCHAR(512),
-    status VARCHAR(255),
-    CONSTRAINT fk_personal_info_user FOREIGN KEY (user_id)
-        REFERENCES users(id) ON DELETE CASCADE
-);
-
-CREATE TABLE avatars (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL,
-    image_url VARCHAR(512) NOT NULL,
-    uploaded_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-    is_current BOOLEAN NOT NULL DEFAULT FALSE,
-    CONSTRAINT fk_avatar_user FOREIGN KEY (user_id)
-        REFERENCES users(id) ON DELETE CASCADE
-);
-CREATE UNIQUE INDEX idx_current_avatar ON avatars(user_id) WHERE is_current = TRUE;
-
-CREATE TABLE communities (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    tag VARCHAR(50) NOT NULL UNIQUE
-);
-
-CREATE TABLE group_members (
-    id SERIAL PRIMARY KEY,
-    group_id INTEGER NOT NULL,
-    user_id INTEGER NOT NULL,
-    alias VARCHAR(100),
-    display_name_override VARCHAR(100),
-    CONSTRAINT fk_member_group FOREIGN KEY (group_id)
-        REFERENCES communities(id) ON DELETE CASCADE,
-    CONSTRAINT fk_member_user FOREIGN KEY (user_id)
-        REFERENCES users(id) ON DELETE CASCADE,
-    CONSTRAINT uq_group_member UNIQUE(group_id, user_id)
-);
-
-CREATE TABLE posts (
-    id SERIAL PRIMARY KEY,
-    author_id INTEGER NOT NULL,
-    content TEXT,
-    media_type VARCHAR(20) CHECK (media_type IN ('text', 'image', 'video', 'audio', 'link')),
-    media_url VARCHAR(512),
-    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-    CONSTRAINT fk_post_author FOREIGN KEY (author_id)
-        REFERENCES users(id) ON DELETE CASCADE
-);
-
-CREATE TABLE comments (
-    id SERIAL PRIMARY KEY,
-    post_id INTEGER NOT NULL,
-    author_id INTEGER NOT NULL,
-    content TEXT NOT NULL,
-    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-    CONSTRAINT fk_comment_post FOREIGN KEY (post_id)
-        REFERENCES posts(id) ON DELETE CASCADE,
-    CONSTRAINT fk_comment_author FOREIGN KEY (author_id)
-        REFERENCES users(id) ON DELETE CASCADE
-);
-```
+DDL-скрипты приведены в приложении Б.
 
 == Детальное проектирование
 
@@ -318,5 +246,4 @@ CREATE TABLE comments (
 
 *Adapter* — интеграция внешних систем (Matrix Federation, S3) через адаптеры (`MatrixFederationAdapter`, `MediaStorageAdapter`).
 
-*Builder* — конструирование DTO и запросов с множеством опциональных полей через Lombok `@Builder`.
 

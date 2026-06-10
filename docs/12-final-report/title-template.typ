@@ -1,5 +1,3 @@
-// Custom title template for course project (курсовой проект)
-// Compatible with modern-g7-32
 
 #let arguments(..args, year: auto) = {
   let args = args.named()
@@ -92,7 +90,7 @@
       align: (left, left),
       inset: (x: 0pt, y: 1pt),
       columns: (auto, auto),
-      [Руководитель проекта: #h(0.3em)], [#manager.name, #manager.degree, #manager.position],
+      [Руководитель проекта: #h(0.3em)], [#(manager.name + if manager.degree != none and manager.degree != "" { ", " + manager.degree } else { "" } + ", " + manager.position)],
     )
   ]
 
