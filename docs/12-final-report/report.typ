@@ -49,7 +49,7 @@
   В проектной части представлены модель требований, модель предметной области, архитектурное проектирование на основе паттерна PCMEF с адаптацией под гексагональные принципы, проектирование базы данных и детальное проектирование с применением паттернов GoF.
   В реализационной части описана разработка бизнес-логики, пользовательского интерфейса на React, REST API с применением OpenAPI, системы безопасности и транзакций.
   В разделе тестирования приведены результаты модульного, интеграционного и системного тестирования.
-  В разделе развёртывания описана контейнеризация с использованием Docker и деплой в Kubernetes через Helm.
+  В разделе развёртывания описана контейнеризация с использованием Docker и развёртывание в Kubernetes через Helm.
   В разделе управления проектом представлены WBS, диаграмма Ганта, оценка трудозатрат по модели COCOMO и управление рисками.
 ]
 
@@ -155,3 +155,20 @@ CREATE TABLE comments (
         REFERENCES users(id) ON DELETE CASCADE
 );
 ```
+
+#v(1cm)
+
+  = Скриншоты пользовательского интерфейса
+
+#figure(image("images/08-ui/room_chat.png", width: 90%), caption: [Интерфейс комнаты чата]) <ui-room>
+
+#figure(image("images/08-ui/user_profile.png", width: 90%), caption: [Профиль пользователя]) <ui-profile>
+
+#figure(image("images/08-ui/user_profile_editor.png", width: 90%), caption: [Редактор профиля]) <ui-profile-editor>
+
+#figure(image("images/08-ui/post_with_media.png", width: 90%), caption: [Публикация с изображением в ленте]) <ui-post>
+
+#figure(image("images/08-ui/post_comments.png", width: 90%), caption: [Страница комментариев]) <ui-comments>
+
+#figure(image("images/08-ui/msocial_settings.png", width: 90%), caption: [Настройки подключения к msocial API]) <ui-settings>
+
