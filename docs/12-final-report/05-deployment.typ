@@ -41,12 +41,20 @@ docker run -p 8080:8080 \
 Основные параметры конфигурации (через переменные окружения или `application.yml`):
 
 - `SPRING_DATASOURCE_URL` — URL подключения к PostgreSQL.
+
 - `SPRING_DATASOURCE_USERNAME` / `SPRING_DATASOURCE_PASSWORD` — учётные данные БД.
+
 - `APP_JWT_SECRET` — секретный ключ для подписи JWT (минимум 256 бит).
+
 - `APP_JWT_ACCESS_EXPIRATION` — время жизни access-токена (по умолчанию 15 минут).
+
 - `APP_JWT_REFRESH_EXPIRATION` — время жизни refresh-токена (по умолчанию 30 дней).
+
 - `APP_MATRIX_HOMESERVER` — базовый URL Matrix-сервера для Federation API.
+
 - `AUTH_DEV_SKIP_VERIFY` — режим разработки (отключает проверку OIDC).
+
+
 
 == Требования к окружению
 
