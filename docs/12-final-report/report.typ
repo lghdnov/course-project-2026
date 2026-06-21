@@ -1,5 +1,6 @@
-#import "@preview/modern-g7-32:0.2.0": abstract, gost, appendixes
+#import "@local/modern-g7-32:0.2.0": abstract, gost, appendixes
 #import "title-template.typ": template as course-project-template, arguments as course-project-args
+
 #show: gost.with(
   title-template: course-project-template,
   city: "Ставрополь",
@@ -32,44 +33,6 @@
     (position: "доцент межинститутской базовой кафедры", name: "Самойлов Ф.В."),
   ),
 )
-
-
-#set list(spacing: auto, body-indent: -1.25cm - 0.75em)
-#set enum(spacing: auto, body-indent: -1.25cm - 0.75em)
-#show list: set block(above: 1.5em - 0.75em, below: 1.5em - 0.75em)
-#show enum: set block(above: 1.5em - 0.75em, below: 1.5em - 0.75em)
-#show heading: set block(above: 1.5em - 0.75em, below: 1.5em - 0.75em)
-
-
-
-#show list: it => {
-  if it.has("label") and it.label == <done> {
-    it
-  } else {
-    [#list(
-      ..it.children.map(child => {
-        list.item(h(1.25cm + 1.5em) + child.body)
-      })
-    ) <done>]
-  }
-}
-
-#show enum: it => {
-  if it.has("label") and it.label == <done> {
-    it
-  } else {
-    [#enum(
-      ..it.children.map(child => {
-        enum.item(child.number, h(1.25cm + 1.5em) + child.body)
-      })
-    ) <done>]
-  }
-}
-
-#set text(font: "Times New Roman")
-#show par: set par(spacing: 1.5em - 0.75em)
-
-
 
 #abstract(
   "социальная сеть",
