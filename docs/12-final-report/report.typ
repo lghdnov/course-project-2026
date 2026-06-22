@@ -31,8 +31,15 @@
   ),
   commission: (
     (position: "доцент межинститутской базовой кафедры", name: "Самойлов Ф.В."),
+    (position: "доцент межинститутской базовой кафедры", name: "Альбекова З.М."),
+
   ),
 )
+
+#pagebreak()
+#set page(numbering: none)
+
+#include "assignment.typ"
 
 #abstract(
   "социальная сеть",
