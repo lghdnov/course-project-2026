@@ -4,7 +4,6 @@
   columns: (auto, 1fr),
   align: (left, left),
   stroke: none,
-  inset: (x: 0pt, y: 2pt),
   [*ACID*], [Atomicity, Consistency, Isolation, Durability — атомарность, согласованность, изолированность, долговечность (требования к транзакционной системе)],
   [*API*], [Application Programming Interface — интерфейс программирования приложений],
   [*ADR*], [Architecture Decision Record — запись об архитектурном решении],

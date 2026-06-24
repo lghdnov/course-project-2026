@@ -290,15 +290,23 @@ com.app.backendapi
    - Проверяется MIME-тип и размер файла. При превышении лимитов генерируется исключение `ValidationException`.
    - Валидные файлы загружаются в хранилище через порт `MediaStoragePort`.
 
-#figure(image("images/04-detailed-design/uc4.png", width: 90%), caption: [Диаграмма последовательности UC4: основной поток сохранения профиля]) <uc4>
+#page(flipped: true)[
+  #figure(image("images/04-detailed-design/uc4.png", width: 100%, height: 80%, fit: "contain"), caption: [Диаграмма последовательности UC4: основной поток сохранения профиля]) <uc4>
+]
 
 #figure(image("images/04-detailed-design/uc4_alt.png", width: 90%), caption: [Диаграмма последовательности UC4: альтернативные потоки]) <uc4-alt>
 
-#figure(image("images/04-detailed-design/uc3-1.png", width: 90%), caption: [Диаграмма последовательности UC3-1: создание публикации]) <ui-post-seq>
+#page(flipped: true)[
+  #figure(image("images/04-detailed-design/uc3-1.png", width: 100%, height: 80%, fit: "contain"), caption: [Диаграмма последовательности UC3-1: создание публикации]) <ui-post-seq>
+]
 
-#figure(image("images/04-detailed-design/uc3-2a.png", width: 90%), caption: [Диаграмма последовательности UC3-2a: обработка медиафайлов]) <uc3-2a>
+#page(flipped: true)[
+  #figure(image("images/04-detailed-design/uc3-2a.png", width: 100%, height: 80%, fit: "contain"), caption: [Диаграмма последовательности UC3-2a: обработка медиафайлов]) <uc3-2a>
+]
 
-#figure(image("images/04-detailed-design/uc3-2b.png", width: 90%), caption: [Диаграмма последовательности UC3-2b: проверка лимитов]) <uc3-2b>
+#page(flipped: true)[
+  #figure(image("images/04-detailed-design/uc3-2b.png", width: 100%, height: 80%, fit: "contain"), caption: [Диаграмма последовательности UC3-2b: проверка лимитов]) <uc3-2b>
+]
 
 === Диаграммы классов проектирования
 
